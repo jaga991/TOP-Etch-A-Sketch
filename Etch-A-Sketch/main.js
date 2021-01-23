@@ -10,4 +10,10 @@ function gridSquareCreate(num) {
 }
 
 document.body.appendChild(containerMain);
-gridSquareCreate(16);
+gridSquareCreate(100);
+let gridSquareAll = document.querySelectorAll(".grid-square");
+gridSquareAll.forEach(gridSquare => {
+    gridSquare.addEventListener('mouseover', (e) => {
+        e.target.style.backgroundColor = "white"
+    })
+})
