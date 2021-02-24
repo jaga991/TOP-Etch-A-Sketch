@@ -32,8 +32,31 @@ body{
 }
 
 #display{
+    height: auto;
     background-color: darkslategray;
     grid-column: 1 / span 4;
+    border: 1px silver solid;
+    display: flex;
+    flex-direction: column;
+}
+#display-output{
+    width: auto;
+    height: 50%;
+    height: fit-content;
+    background-color: lightblue;
+    text-align: right;
+}
+
+#display-input{
+    background-color: white;
+    text-align:right;
+    width: auto;
+    height: 50%;
+    min-height: 30px;
+    align-self: flex-end;
+    font-size: 150%;
+    max-width: 100%;
+    
 }
 
 button{
@@ -42,7 +65,16 @@ button{
     border-radius: 10px;
     margin: 2px;
     color: whitesmoke;
-    font-size: 100%;
+    font-size: 150%;
+    outline: none;
+}
+button:hover{
+    border: 4px groove hsl(25, 100%, 97%);
+    color: hsl(26, 12%, 78%);
+}
+
+button:active{
+    background-color: hsl(0, 0%, 20%);
 }
 
 /* button positioning */

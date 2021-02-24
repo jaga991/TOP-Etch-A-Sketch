@@ -10,27 +10,29 @@
 <body>
     <div id="calculator">
         <div id="main-container">
-            <div id="display"></div>
-            <button type="button" id="clear-btn">AC</button>
-            <button type="button" id="pos-neg-btn">±</button>
-            <button type="button" id="mod-btn">%</button>
-            <button type="button" id="divide-btn">÷</button>
-            <button type="button" id="multiply-btn">x</button>
-            <button type="button" id="add-btn">+</button>
-            <button type="button" id="subtract-btn">-</button>
-            <button type="button" id="btn-1">1</button>
-            <button type="button" id="btn-2">2</button>
-            <button type="button" id="btn-3">3</button>
-            <button type="button" id="btn-4">4</button>
-            <button type="button" id="btn-5">5</button>
-            <button type="button" id="btn-6">6</button>
-            <button type="button" id="btn-7">7</button>
-            <button type="button" id="btn-8">8</button>
-            <button type="button" id="btn-9">9</button>
-            <button type="button" id="btn-0">0</button>
-            <button type="button" id="point-btn">.</button>
-            <button type="button" id="equal-btn">=</button>
-
+            <div id="display">
+                <div id="display-output"></div>
+                <div id="display-input"></div>
+            </div>
+            <button type="button" id="clear-btn" data-clear="clear">AC</button>
+            <button type="button" id="pos-neg-btn" data-operator="pos-neg">±</button>
+            <button type="button" id="mod-btn" data-operator="%">%</button>
+            <button type="button" id="divide-btn" data-operator="/">÷</button>
+            <button type="button" id="multiply-btn" data-operator="*">*</button>
+            <button type="button" id="add-btn" data-operator="+">+</button>
+            <button type="button" id="subtract-btn" data-operator="-">-</button>
+            <button type="button" id="btn-1" data-input="1">1</button>
+            <button type="button" id="btn-2" data-input="2">2</button>
+            <button type="button" id="btn-3" data-input="3">3</button>
+            <button type="button" id="btn-4" data-input="4">4</button>
+            <button type="button" id="btn-5" data-input="5">5</button>
+            <button type="button" id="btn-6" data-input="6">6</button>
+            <button type="button" id="btn-7" data-input="7">7</button>
+            <button type="button" id="btn-8" data-input="8">8</button>
+            <button type="button" id="btn-9" data-input="9">9</button>
+            <button type="button" id="btn-0" data-input="0">0</button>
+            <button type="button" id="point-btn" data-input=".">.</button>
+            <button type="button" id="equal-btn" data-equal="equal">=</button>
         </div>
     </div>
     <script src="./main.js"></script>
