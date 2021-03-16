@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.0/math.js" integrity="sha512-bd8Oth+p1rTn+/iUFHsSozuYn7JpmH59vMWe6L+M3huScB/SMTXWkQoME3Ytk0sbGJ40VGp2mO2b8K8FNrewfQ==" crossorigin="anonymous"></script>
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="calculator">
+        <div id="main-container">
+            <div id="display">
+                <div id="display-output"></div>
+                <div id="display-input"></div>
+            </div>
+            <button type="button" id="clear-btn" data-clear="clear">AC</button>
+            <button type="button" id="pos-neg-btn" data-operator="pos-neg">±</button>
+            <button type="button" id="mod-btn" data-operator="%">%</button>
+            <button type="button" id="divide-btn" data-operator="/">÷</button>
+            <button type="button" id="multiply-btn" data-operator="*">*</button>
+            <button type="button" id="add-btn" data-operator="+">+</button>
+            <button type="button" id="subtract-btn" data-operator="-">-</button>
+            <button type="button" id="btn-1" data-input="1">1</button>
+            <button type="button" id="btn-2" data-input="2">2</button>
+            <button type="button" id="btn-3" data-input="3">3</button>
+            <button type="button" id="btn-4" data-input="4">4</button>
+            <button type="button" id="btn-5" data-input="5">5</button>
+            <button type="button" id="btn-6" data-input="6">6</button>
+            <button type="button" id="btn-7" data-input="7">7</button>
+            <button type="button" id="btn-8" data-input="8">8</button>
+            <button type="button" id="btn-9" data-input="9">9</button>
+            <button type="button" id="btn-0" data-input="0">0</button>
+            <button type="button" id="point-btn" data-input=".">.</button>
+            <button type="button" id="equal-btn" data-equal="equal">=</button>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
