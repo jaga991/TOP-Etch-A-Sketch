@@ -1,4 +1,3 @@
-/* Set up initial query selectors */
 
 //display
 let displayOutput = document.getElementById('display-output');
@@ -26,6 +25,8 @@ function main() {
 
     for(let i = 0; i < operatorBtnArr.length; i++){
         operatorBtnArr[i].addEventListener('click', () => {
+            console.log("operator clicked");
+
             if(operatorBtnArr[i].getAttribute('data-operator') != "pos-neg"){
                 displayOutput.innerText += " " + displayInput.innerText + " " + operatorBtn[i].getAttribute('data-operator');
                 displayInput.innerText = "";
@@ -35,6 +36,19 @@ function main() {
             }
         })
     }
+
+    clearBtn.addEventListener('click', () => {
+        displayInput.innerText = "";
+        displayOutput.innerText = "";
+    })
+
+    equalBtn.addEventListener('click', () => {
+        let equationTBA = `${displayOutput.innerText} ${displayInput.innerText}`;
+        let ans = math.evaluate(equationTBA);
+        displayInput.innerText = ans;
+        displayOutput.innerText = "";
+    })
+    
 }
 
 main();
