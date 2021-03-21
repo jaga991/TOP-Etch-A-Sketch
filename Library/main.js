@@ -5,6 +5,7 @@ let authorInput = document.getElementById('author-input');
 let totalPagesInput = document.getElementById('total-pages-input');
 let pagesReadInput = document.getElementById('total-pages-input');
 let addBtn = document.getElementById('add-btn');
+let deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
 
 // constructor function to create said book
 function BookCard(title, author, totalPages, pagesRead) {
@@ -23,6 +24,7 @@ function updateLibrary(targetTitle) {
     }
 
     myLibrary = [...updatedList];
+    localStorage.setItem("library", JSON.stringify(myLibrary));
 }
 
 function addBookToLibrary() {
@@ -77,12 +79,33 @@ function addBookToLibrary() {
         card.appendChild(deleteBtn);
 
         document.getElementById('library-container').appendChild(card);
+        localStorage.setItem("library", JSON.stringify(myLibrary));
     }
+}
 
+function createDeleteBtn(){
+    deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
+    deleteBtnArr.forEach(function(element){
+        element.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("deleteBtn Clicked");
+            console.log(e.target.parentNode.getElementsByClassName('card-title-ans')[0].innerText);
+            updateLibrary(e.target.parentNode.getElementsByClassName('card-title-ans')[0].innerText);
+            e.target.parentNode.remove();
+        })
+    })
 }
 function main(){
-    //get myLibrary form LocalStorage and go through addBookToLibrary() once 
-    let deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
+    console.log(localStorage);
+    //get myLibrary form LocalStorage and go through addBookToLibrary() once
+    if(localStorage.getItem("library")){
+        myLibrary = JSON.parse(localStorage.getItem("library"));
+        addBookToLibrary();
+        createDeleteBtn();
+    }
+    // let test = [{"title": "lorem"}, {"title": "ipsum"}, {"title": "parvic"}]
+    // localStorage.removeItem("library");
+    // console.log(JSON.parse(localStorage.getItem("library"))); 
 
     document.getElementById('add-btn').addEventListener('click', (e) => {
         //if(running through error handling function, no error,)
@@ -91,22 +114,8 @@ function main(){
         addBookToLibrary();
         console.log(myLibrary);
 
-        //Add eventlistener function for each newly created deleteBtn in newly created cards
-        deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
-        deleteBtnArr.forEach(function(element){
-            element.addEventListener("click", (e) => {
-                e.preventDefault();
-                console.log("deleteBtn Clicked");
-                console.log(e.target.parentNode.getElementsByClassName('card-title-ans')[0].innerText);
-                updateLibrary(e.target.parentNode.getElementsByClassName('card-title-ans')[0].innerText);
-                e.target.parentNode.remove();
-            })
-        })
-        //store myLibrary in localstorage somehow
+        createDeleteBtn();
     })
-
-    
-        
 }
 
 main();
