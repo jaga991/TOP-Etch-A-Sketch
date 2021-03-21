@@ -14,15 +14,33 @@ function BookCard(title, author, totalPages, pagesRead) {
     this.pagesRead = pagesRead;
 }
 
+function updateLibrary(targetTitle) {
+    let updatedList = []
+    for(let i = 0; i < myLibrary.length; i++){
+        if(myLibrary[i].title != targetTitle){
+            updatedList.push(myLibrary[i]);
+        }
+    }
+
+    myLibrary = [...updatedList];
+}
+
 function addBookToLibrary() {
     for(let i = 0; i < myLibrary.length; i++){
-        let card = document.createElement('div')
+        let card = document.createElement('div');
         card.className += "book-card";
 
+        let deleteBtn = document.createElement('button');
+        deleteBtn.type = "button"
+        deleteBtn.className += "deleteBtn";
+        deleteBtn.innerText = "X";
+
         let cardTitleSubcontainer = document.createElement('div');
+        cardTitleSubcontainer.className += "card-title-subcontainer";
         let cardTitle = document.createElement('h1');
         cardTitle.innerText = "TITLE"
         let cardTitleAns = document.createElement('p');
+        cardTitleAns.className += "card-title-ans"
         cardTitleAns.innerText = myLibrary[i].title;
         cardTitleSubcontainer.appendChild(cardTitle);
         cardTitleSubcontainer.appendChild(cardTitleAns);
@@ -56,21 +74,39 @@ function addBookToLibrary() {
         card.appendChild(cardTotalPagesSubcontainer);
         card.appendChild(cardPagesReadSubcontainer);
 
+        card.appendChild(deleteBtn);
+
         document.getElementById('library-container').appendChild(card);
     }
+
 }
 function main(){
     //get myLibrary form LocalStorage and go through addBookToLibrary() once 
+    let deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
 
     document.getElementById('add-btn').addEventListener('click', (e) => {
         //if(running through error handling function, no error,)
         document.getElementById('library-container').innerHTML = "";
         myLibrary.push(new BookCard(titleInput.value, authorInput.value, totalPagesInput.value, pagesReadInput.value));
         addBookToLibrary();
+        console.log(myLibrary);
 
-
+        //Add eventlistener function for each newly created deleteBtn in newly created cards
+        deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
+        deleteBtnArr.forEach(function(element){
+            element.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log("deleteBtn Clicked");
+                console.log(e.target.parentNode.getElementsByClassName('card-title-ans')[0].innerText);
+                updateLibrary(e.target.parentNode.getElementsByClassName('card-title-ans')[0].innerText);
+                e.target.parentNode.remove();
+            })
+        })
         //store myLibrary in localstorage somehow
     })
+
+    
+        
 }
 
 main();
