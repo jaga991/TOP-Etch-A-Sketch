@@ -13,8 +13,15 @@ body{
 }
 
 #form-container{
-    background-color: whitesmoke;
+    background-color: rgb(189, 181, 181);
     width: 100%;
+}
+
+#form-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 #library-container{
@@ -33,6 +40,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .book-card-subcontainer{
@@ -40,4 +48,12 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.form-input-subcontainer span{
+    color: #8b0000;
+    font-size: 50%;
+    margin-left: 10px;
+    position: absolute;
+    transform: translate(0, 50%);
 }
