@@ -3,9 +3,65 @@ let myLibrary = [];
 let titleInput = document.getElementById('title-input');
 let authorInput = document.getElementById('author-input');
 let totalPagesInput = document.getElementById('total-pages-input');
-let pagesReadInput = document.getElementById('total-pages-input');
+let pagesReadInput = document.getElementById('pages-read-input');
 let addBtn = document.getElementById('add-btn');
 let deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
+
+//error handler
+function inputErrorHandler(){
+    let errorCase;
+    errorCase = [];
+    if(titleInput.value == ""){
+        errorCase.push("Title empty");
+        if(titleInput.parentElement.children[0].children.length == 0){
+            let titleEmptyErrorElement = document.createElement('span');
+            let titleEmptyErrorText = document.createTextNode("Title cannot be left empty");
+            titleEmptyErrorElement.appendChild(titleEmptyErrorText);
+            titleInput.parentElement.children[0].appendChild(titleEmptyErrorElement);
+            setTimeout(() => {titleEmptyErrorElement.remove()}, 3000);
+        }
+    }else{
+        for(let i = 0; i < myLibrary.length; i++){
+            if(myLibrary[i].title == titleInput.value && myLibrary[i].author == authorInput.value){
+                errorCase.push("Book already exist");
+                if( titleInput.parentElement.children[0].children.length == 0){
+                    let titleExistErrorElement = document.createElement('span');
+                    let titleExistErrorText = document.createTextNode("This book already exist in the library");
+                    titleExistErrorElement.appendChild(titleExistErrorText);
+                    titleInput.parentElement.children[0].appendChild(titleExistErrorElement);
+                    setTimeout(() => {titleExistErrorElement.remove()}, 3000);
+                }
+            }
+        }
+    }
+    if(authorInput.value == ""){
+        errorCase.push("Author empty")
+        if(authorInput.parentElement.children[0].children.length == 0){
+            let authorEmptyErrorElement = document.createElement('span');
+            let authorEmptyErrorText = document.createTextNode("Author cannot be left empty");
+            authorEmptyErrorElement.appendChild(authorEmptyErrorText);
+            authorInput.parentElement.children[0].appendChild(authorEmptyErrorElement);
+            setTimeout(() => {authorEmptyErrorElement.remove()}, 3000);
+        }
+    }
+    if(totalPagesInput.value < pagesReadInput.value){
+        errorCase.push("total pages less than pages read");
+        if(totalPagesInput.parentElement.children[0].children.length == 0){
+            let pagesErrorElement = document.createElement('span');
+            let pagesErrorText = document.createTextNode("Pages of book cannot be less than pages read");
+            pagesErrorElement.appendChild(pagesErrorText);
+            totalPagesInput.parentElement.children[0].appendChild(pagesErrorElement);
+            setTimeout(() => {pagesErrorElement.remove()}, 3000);
+        }
+    }
+
+    if(errorCase.length == 0){
+        console.log("no error");
+        return false;
+    }else{
+        return true;
+    }
+};
 
 // constructor function to create said book
 function BookCard(title, author, totalPages, pagesRead) {
@@ -13,7 +69,7 @@ function BookCard(title, author, totalPages, pagesRead) {
     this.author = author;
     this.totalPages = totalPages;
     this.pagesRead = pagesRead;
-}
+};
 
 function updateLibrary(targetTitle) {
     let updatedList = []
@@ -25,7 +81,7 @@ function updateLibrary(targetTitle) {
 
     myLibrary = [...updatedList];
     localStorage.setItem("library", JSON.stringify(myLibrary));
-}
+};
 
 function addBookToLibrary() {
     for(let i = 0; i < myLibrary.length; i++){
@@ -81,7 +137,7 @@ function addBookToLibrary() {
         document.getElementById('library-container').appendChild(card);
         localStorage.setItem("library", JSON.stringify(myLibrary));
     }
-}
+};
 
 function createDeleteBtn(){
     deleteBtnArr = [...document.getElementsByClassName('deleteBtn')];
@@ -94,7 +150,7 @@ function createDeleteBtn(){
             e.target.parentNode.remove();
         })
     })
-}
+};
 function main(){
     console.log(localStorage);
     //get myLibrary form LocalStorage and go through addBookToLibrary() once
@@ -103,20 +159,17 @@ function main(){
         addBookToLibrary();
         createDeleteBtn();
     }
-    // let test = [{"title": "lorem"}, {"title": "ipsum"}, {"title": "parvic"}]
-    // localStorage.removeItem("library");
-    // console.log(JSON.parse(localStorage.getItem("library"))); 
 
     document.getElementById('add-btn').addEventListener('click', (e) => {
         //if(running through error handling function, no error,)
-        document.getElementById('library-container').innerHTML = "";
-        myLibrary.push(new BookCard(titleInput.value, authorInput.value, totalPagesInput.value, pagesReadInput.value));
-        addBookToLibrary();
-        console.log(myLibrary);
-
-        createDeleteBtn();
+        if(!inputErrorHandler()){
+            document.getElementById('library-container').innerHTML = "";
+            myLibrary.push(new BookCard(titleInput.value, authorInput.value, totalPagesInput.value, pagesReadInput.value));
+            addBookToLibrary();
+            createDeleteBtn();      
+        }
     })
-}
+};
 
 main();
 

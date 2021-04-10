@@ -5,8 +5,6 @@
 }
 body{
     background-color: hsl(242, 67%, 19%);
-    min-width: 100vw;
-    min-height: 100vh;
 }
 
 #main-container{
@@ -16,12 +14,14 @@ body{
 
 #form-container{
     background-color: whitesmoke;
+    width: 100%;
 }
 
 #library-container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
 }
 
 .book-card{
