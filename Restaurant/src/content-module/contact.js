@@ -1,3 +1,5 @@
+'use strict';
+
 function contactContent() {
   const contactDiv = document.createElement('div');
   const contactTitle = document.createElement('h1');
