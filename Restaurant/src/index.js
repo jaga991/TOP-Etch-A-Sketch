@@ -5,6 +5,12 @@ import homeContent from './content-module/home';
 import menuContent from './content-module/menu';
 import contactContent from './content-module/contact';
 
+import 'ol/ol.css';
+import {Map, View} from 'ol';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+
+
 const mainContent = document.getElementById('content');
 const homeNav = document.getElementById('home-nav');
 const menuNav = document.getElementById('menu-nav');
@@ -39,6 +45,18 @@ for (let i = 0; i < navLi.length; i++) {
         break;
       case contactNav:
         mainContent.appendChild(contactContent());
+        const map = new Map({
+          target: 'map',
+          layers: [
+            new TileLayer({
+              source: new OSM()
+            })
+          ],
+          view: new View({
+            center: [0, 0],
+            zoom: 0
+          })
+        });
         break;
     }
   })
