@@ -1,0 +1,20 @@
+module
+
+index.js
+build.js, control.js, display.js 
+
+build.js needs to build
+-left side nav, right side todolist container, header
+-todos div
+-send results to control.js
+
+control.js need to respond to
+-event listeners from display.js and then send instructions to build.js (user adding todos, clicking on nav)
+-received results from build.js and send it to display.js 
+-error checks to be handled here
+
+display.js needs to
+-append all contents and any changes returned by control.js
+
+therefore control.js needs to be able to interact with build.js and display.js, but build.js and display.js will never interact
+

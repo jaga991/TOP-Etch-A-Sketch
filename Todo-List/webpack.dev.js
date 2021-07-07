@@ -5,7 +5,8 @@ const { merge } = require("webpack-merge");
 module.exports = merge(common, {
   mode: "development",
   devServer: {
-    contentBase: './dist',
+    contentBase: 'dist',
+    watchContentBase: true
   },
   output: {
     filename: "main.js",
