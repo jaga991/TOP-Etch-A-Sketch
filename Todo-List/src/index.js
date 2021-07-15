@@ -3,7 +3,7 @@
 import { formatDistance, subDays } from 'date-fns';
 import './style.css';
 
-import control from './controller/control';
-import build from './builder/build';
+import display from './displayer/display';
 
-console.log(build.domElement('div', 'div', 'div'))
+document.body.onload = display.onStart();
+
