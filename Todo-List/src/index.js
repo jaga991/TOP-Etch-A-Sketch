@@ -1,9 +1,13 @@
 "use strict";
 
-import { formatDistance, subDays } from 'date-fns';
+import control from './controller/control';
+import data from './data';
 import './style.css';
 
-import display from './displayer/display';
 
-document.body.onload = display.onStart();
+document.onload = control.onStart();
 
+window.addEventListener("beforeunload", (event) => {
+  event.preventDefault;
+  control.onClose();
+})
