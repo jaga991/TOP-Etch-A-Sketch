@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: rgb(201, 201, 223);
+}
+
+#mainDiv {
+  background-color: whitesmoke;
+  width: 90%;
+  height: 90%;
+  align-self: center;
+}
+
+#mainHeader {
+  background-color: teal;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#secondaryDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+/* navDiv */
+#navDiv {
+  background-color: tomato;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#filterList {
+  background-color: white;
+  flex: 3;
+}
+
+#sortList {
+  background-color: green;
+  flex: 1;
+}
+
+#toDoListDiv {
+  background-color: violet;
+  flex: 3;
+}
+
