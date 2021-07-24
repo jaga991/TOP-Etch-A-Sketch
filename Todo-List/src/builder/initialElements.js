@@ -20,6 +20,7 @@ const initialElements = (() => {
   
     const secondaryDiv = (() => {
       const secDiv = domElement("div", "secondaryDiv");
+      
       const navDiv = (() => {
         const i = domElement("div", "navDiv");
         return i;

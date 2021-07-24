@@ -4,6 +4,7 @@ import data from "../data";
 import build from "../builder/build";
 import display from "../displayer/display";
 import displayOnStart from "../displayer/onstart";
+import navGroupLi from "./navGroupLi";
 
 //handles methods for data changes
 
@@ -74,14 +75,16 @@ const control = (() => {
 
   const navGroupRefresh = () => {
     const toDoGroupArr = data.getToDoGroupArr();
-    while(document.querySelector("#filterList").lastChild) {
+    while(!document.querySelector("#filterList").lastChild.classList.contains("clearHide")) {
       document.querySelector("#filterList").lastChild.remove();
     }
     for (let i = 0; i < toDoGroupArr.length; i++) {
-      let item = build.domElement("li", false, "listItem", toDoGroupArr[i])
+      let item = build.domElement("li", false, "listItem", toDoGroupArr[i]);
+      navGroupLi.onClick(item);
       document.querySelector("#filterList").appendChild(item);
     }
   };
+
 
   const initToDoMainArrFromLocalStorage = () => {
     let i = JSON.parse(window.localStorage.getItem("data"));

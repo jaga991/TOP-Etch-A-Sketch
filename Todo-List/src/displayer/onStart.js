@@ -3,6 +3,7 @@
 import data from "../data";
 import initialElements from "../builder/initialElements";
 import build from "../builder/build";
+import navGroupLi from "../controller/navGroupLi";
 
 const displayOnStart = () => {
   const updateNavList = () => {
@@ -11,9 +12,13 @@ const displayOnStart = () => {
     //create a sort list based on due first, due last, default: first created 
     const filterList = (filterItemArr) => {
       const unorderedList = build.domElement("ul", "filterList");
+      const all = build.domElement("li", false, "listItem clearHide", "all");
+      navGroupLi.onClick(all);
+      unorderedList.appendChild(all);
       for (let e = 0; e < filterItemArr.length; e++) {
-        console.log()
-        unorderedList.appendChild(build.domElement("li", false, "listItem", filterItemArr[e]));
+        const listItem = build.domElement("li", false, "listItem", filterItemArr[e]);
+        navGroupLi.onClick(listItem);
+        unorderedList.appendChild(listItem);
       }
       return unorderedList;
     };
@@ -21,7 +26,8 @@ const displayOnStart = () => {
     const sortList = (sortItemArr) => {
       const unorderedList = build.domElement("ul", "sortList");
       for (let e = 0; e < sortItemArr.length; e++) {
-        unorderedList.appendChild(build.domElement("li", false, "listItem", sortItemArr[e]));
+        const listItem = build.domElement("li", false, "listItem", sortItemArr[e]);
+        unorderedList.appendChild(listItem);
       }
 
       return unorderedList;
@@ -34,7 +40,7 @@ const displayOnStart = () => {
     const toDosDiv = document.getElementById("toDosDiv")
     console.log(data.toDoMainArr)
     for (let i = 0; i < data.toDoMainArr.length; i++) {
-      toDosDiv.appendChild(build.toDoConstructor(data.toDoMainArr[i]["Test"], data.toDoMainArr[i]["Description"], data.toDoMainArr[i]["Group"], data.toDoMainArr[i]["Due Date"]));
+      toDosDiv.appendChild(build.toDoConstructor(data.toDoMainArr[i]["Title"], data.toDoMainArr[i]["Description"], data.toDoMainArr[i]["Group"], data.toDoMainArr[i]["Due Date"]));
     }
   };
 
